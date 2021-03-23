@@ -1,5 +1,6 @@
 package com.pablochen.coupon.controller;
 
+import com.pablochen.coupon.aop.PerfLogging;
 import com.pablochen.coupon.config.security.JwtTokenProvider;
 import com.pablochen.coupon.domain.User;
 import com.pablochen.coupon.dto.UserDto;
@@ -24,6 +25,7 @@ public class AccountController {
         return "account";
     }
 
+    @PerfLogging
     @PostMapping("/signUp")
     public User signUp(@RequestBody UserDto userDto) {
         return userRepository.save(User.builder()
@@ -33,6 +35,7 @@ public class AccountController {
                 .build());
     }
 
+    @PerfLogging
     @PostMapping("/signIn")
     public String signIn(@RequestBody UserDto userDto) {
         User member = userRepository.findByEmail(userDto.getEmail())
