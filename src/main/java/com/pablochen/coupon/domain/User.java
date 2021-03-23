@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Builder
 @Entity
 @ToString
-public class User implements UserDetails {
+public class User extends BaseEntity implements UserDetails  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +39,7 @@ public class User implements UserDetails {
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
-
+    
     @Override
     public String getUsername() {
         return email;

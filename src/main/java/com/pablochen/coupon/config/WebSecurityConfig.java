@@ -1,5 +1,7 @@
-package com.pablochen.coupon.config.security;
+package com.pablochen.coupon.config;
 
+import com.pablochen.coupon.config.security.JwtAuthenticationFilter;
+import com.pablochen.coupon.config.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
