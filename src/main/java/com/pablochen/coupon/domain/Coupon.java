@@ -51,6 +51,8 @@ public class Coupon implements Serializable {
     }
 
     public void use(){
+        LocalDateTime now = LocalDateTime.now();
+        if(now.isAfter(this.getExpiredAt())) throw new IllegalStateException("already expired coupon exception");
         this.used = true;
     }
 
