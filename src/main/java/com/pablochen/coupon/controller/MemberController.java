@@ -53,7 +53,7 @@ public class MemberController {
     public CouponDto cancelCoupon(@PathVariable String couponCode){
         Coupon coupon = couponService.findCoupon(couponCode);
         if(!coupon.isUsed()) throw new IllegalAccessError("unused Coupon exception");
-        
+
         coupon.cancelUse();
         couponService.updateCoupon(coupon);
 
