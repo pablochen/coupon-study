@@ -29,7 +29,7 @@ public class AccountController {
     @PostMapping("/signUp")
     public User signUp(@RequestBody UserDto userDto) {
         return userRepository.save(User.builder()
-                .email(userDto.getEmail())
+                .userId(userDto.getUserId())
                 .password(passwordEncoder.encode(userDto.getPassword()))
                 .roles(Collections.singletonList("ROLE_" + userDto.getRole()))
                 .build());
@@ -38,14 +38,14 @@ public class AccountController {
     @PerfLogging
     @PostMapping("/signIn")
     public String signIn(@RequestBody UserDto userDto) {
-        User member = userRepository.findByEmail(userDto.getEmail())
+        User member = userRepository.findByUserId(userDto.getUserId())
                 .orElseThrow(() -> new IllegalArgumentException("가입되지 않은 E-MAIL 입니다."));
 
         if (!passwordEncoder.matches(userDto.getPassword(), member.getPassword())) {
             throw new IllegalArgumentException("잘못된 비밀번호입니다.");
         }
 
-        return jwtTokenProvider.createToken(member.getEmail(), member.getRoles());
+        return jwtTokenProvider.createToken(member.getUserId(), member.getRoles());
     }
 
 

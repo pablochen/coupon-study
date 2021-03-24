@@ -24,7 +24,7 @@ public class User extends BaseEntity implements UserDetails  {
     private Long id;
 
     @Column(length = 100, nullable = false, unique = true)
-    private String email;
+    private String userId;
 
     @Column(length = 300, nullable = false)
     private String password;
@@ -42,7 +42,7 @@ public class User extends BaseEntity implements UserDetails  {
     
     @Override
     public String getUsername() {
-        return email;
+        return userId;
     }
 
     @Override
